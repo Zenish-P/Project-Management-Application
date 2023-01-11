@@ -1,0 +1,51 @@
+CREATE SCHEMA PUBLIC AUTHORIZATION DBA
+CREATE USER SC PASSWORD ""
+GRANT DBA TO SC
+SET WRITE_DELAY 20
+SET SCHEMA PUBLIC
+
+CREATE MEMORY TABLE Teams(name VARCHAR(64) NOT NULL, PRIMARY KEY(name))
+CREATE MEMORY TABLE Users(team VARCHAR(64) NOT NULL, name VARCHAR(64) NOT NULL, bio VARCHAR(64), PRIMARY KEY(team, name), FOREIGN KEY(team) REFERENCES Teams(name))
+CREATE MEMORY TABLE Projects(team VARCHAR(64) NOT NULL, name VARCHAR(64) NOT NULL, description VARCHAR(128), PRIMARY KEY(team, name), FOREIGN KEY(team) REFERENCES Teams(name))
+CREATE MEMORY TABLE FeatureTickets(team VARCHAR(64), project VARCHAR(64) NOT NULL, name VARCHAR(64) NOT NULL, description VARCHAR(128), PRIORITY VARCHAR(8), cost INTEGER NOT NULL, status VARCHAR(16) NOT NULL, deadline DATETIME, creation DATETIME, PRIMARY KEY(team, project, name), FOREIGN KEY(team, project) REFERENCES Projects(team, name))
+
+INSERT INTO Teams VALUES('Team #1')
+INSERT INTO Teams VALUES('Team #2')
+
+INSERT INTO Users VALUES('Team #1', 'Graydon', 'Likes pizza')
+INSERT INTO Users VALUES('Team #1', 'Guido', 'Likes sushi')
+INSERT INTO Users VALUES('Team #1', 'Brendan', 'Likes salad')
+INSERT INTO Users VALUES('Team #1', 'Dennis', 'Likes steak')
+
+INSERT INTO Users VALUES('Team #2', 'Leonardo', 'Likes dogs')
+INSERT INTO Users VALUES('Team #2', 'Pablo', 'Likes cats')
+INSERT INTO Users VALUES('Team #2', 'Salvador', 'Likes parrots')
+INSERT INTO Users VALUES('Team #2', 'Vincent', 'Likes gorillas')
+
+INSERT INTO Projects VALUES('Team #1', 'Website', 'A website for selling company products')
+INSERT INTO Projects VALUES('Team #1', 'iOS App', 'An iOS app for selling company products')
+
+INSERT INTO Projects VALUES('Team #2', 'Role-playing Game', 'An RPG game')
+INSERT INTO Projects VALUES('Team #2', 'Platforming Game', 'A platforming game')
+
+INSERT INTO FeatureTickets VALUES('Team #1', 'Website', 'Center title element on homepage', 'Center the title element on the homepage', 'Low', 1, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'Website', 'Add company logo to homepage header', 'Add the company logo on the header on the homepage', 'Medium', 1, 'InProgress', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'Website', 'Create a product page', 'Create a product page allowing users to view and purchase products', 'High', 4, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'Website', 'Add a footer to the homepage', 'Add a footer element to the homepage, listing T&C details and copyright information', 'Low', 2, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'Website', 'Add a company info page', 'Add a page which lists company information and vision', 'Medium', 3, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+
+INSERT INTO FeatureTickets VALUES('Team #1', 'iOS App', 'Adjust the default theme''s primary colour', 'Adjust the primary colour of the default theme to be darker', 'Low', 1, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'iOS App', 'Implement notifications for item discounts', 'Have the app notify the user of product discounts', 'Medium', 2 ,'InProgress', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'iOS App', 'Create card elements for displaying product information', 'Create card elements which list the name, description and price of a product', 'High', 3, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'iOS App', 'Fix navigation bug on back-button press', 'Fix the navigation bug which occurs when users press the back-button in the product listing section', 'Medium', 2, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #1', 'iOS App', 'Add a splash screen', 'Add a splash screen containing the company''s name and logo which is displayed on startup', 'Low', 1, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+
+INSERT INTO FeatureTickets VALUES('Team #2', 'Role-playing Game', 'Implement a basic quest system for NPCs', 'Allow NPCs to give players quests', 'High', 4, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Role-playing Game', 'Implement an equipment system for players', 'Allow players to equip certain items', 'Medium', 3, 'InProgress', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Role-playing Game', 'Implement auto-sorting for player inventories', 'Allow for user''s to auto-sort their inventories', 'Low', 2, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Role-playing Game', 'Implement a combat system', 'Allow for mobs to attack each other with weapons', 'High', 4, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+
+INSERT INTO FeatureTickets VALUES('Team #2', 'Platforming Game', 'Implement a movement system', 'Center the title element on the homepage', 'High', 3, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Platforming Game', 'Add obstacles which eliminate the player on collision', 'Allow for the player and enemies to move', 'Medium', 3, 'InProgress', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Platforming Game', 'Add a hot-key which restarts the current level', 'Add a hot-key which the player can use to restart the current level', 'Low', 1, 'TODO', 2022-07-28 00:00:00, 2022-07-28 00:00:00)
+INSERT INTO FeatureTickets VALUES('Team #2', 'Platforming Game', 'Allow for enemies to be damaged', 'Allow for enemies to be damaged when the player jumps on them', 'High', 2, 'Complete', 2022-07-28 00:00:00, 2022-07-28 00:00:00)

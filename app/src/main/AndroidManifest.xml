@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="comp3350.projectmanagementapplication">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProjectManagementApplication"
+        tools:targetApi="31">
+        <activity
+            android:name=".presentation.TicketEditActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar"/>
+        <activity
+            android:name=".presentation.ProjectCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.TicketBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.TeamSelectActivity"
+            android:exported="true"
+            android:label="@string/team_select_title"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.ProjectSelectActivity"
+            android:exported="true"
+            android:label="@string/project_select_title"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar" />
+        <activity
+            android:name=".presentation.UserSelectActivity"
+            android:exported="true"
+            android:label="Users"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar" />
+        <activity
+            android:name=".presentation.NewUserActivity"
+            android:exported="true"
+            android:label="NewUser"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar"></activity>
+        <activity
+            android:name=".presentation.NewTicketActivity"
+            android:exported="true"
+            android:label="NewTicket"
+            android:theme="@style/Theme.ProjectManagementApplication.NoActionBar"></activity>
+        <activity android:name=".presentation.TeamCreateActivity" />
+        <activity android:name=".presentation.ProjectStatActivity" />
+    </application>
+
+</manifest>

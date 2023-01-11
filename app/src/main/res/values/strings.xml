@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Project Management Application</string>
+    <string name="team_select_title">Teams</string>
+    <string name="project_select_title">Projects</string>
+    <!-- Strings used for fragments for navigation -->
+
+
+    <string name="save">Save</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="cancel">cancel</string>
+    <string name="delete">delete</string>
+</resources>
